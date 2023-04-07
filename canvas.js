@@ -1,5 +1,5 @@
 /**
- * 
+ * Get a random number between the range of numbers.
  * @param {Number} min Minimum value of the range.
  * @param {Number} max Maximum value of the range.
  * @returns {Number} Returns a random number that falls in the range.
@@ -10,7 +10,7 @@ function random_number_between(min, max) {
 }
 
 /**
- * Function to paint lines with Bresenham's line algorithm.
+ * Paint lines with Bresenham's line algorithm to everithing cases.
  * @param {Number} x1 x-value of the fist point.
  * @param {Number} y1 y-value of the fist point.
  * @param {Number} x2 x-value of the second point.
