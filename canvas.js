@@ -34,7 +34,7 @@ function line_bresenham(x1, y1, x2, y2) {
             err -= dy;
             x1 += sx;
         }
-        if (e2 <dx) {
+        if (e2 < dx) {
             err += dx;
             y1 += sy;
         }
