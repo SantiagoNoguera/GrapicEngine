@@ -17,64 +17,30 @@ function random_number_between(min, max) {
  * @param {Number} y2 y-value of the second point.
  */
 function line_bresenham(x1, y1, x2, y2) {
-    var dx = x2 - x1, dy = y2 - y1;
-    var x, y;
-    var stepX, stepY;
+    var dx = Math.abs(x2 - x1);
+    var dy = Math.abs(y2 - y1);
+    var sx = (x1 < x2) ? 1 : -1;
+    var sy = (y1 < y2) ? 1 : -1;
+    var err = dx - dy;
 
-    //Determine the starting point and the end point on Y.
-    if (dy < 0) {
-        dy *= -1;
-        stepY = -1;
-    }
-    else {
-        stepY = 1;
-    }
+    while (true) {
+        context.fillRect(x1, y1, 1, 1);
 
-    //Determine the starting point and the end point on X.
-    if (dx < 0) {
-        dx *= -1;
-        stepX = -1;
-    }
-    else {
-        stepX = 1;
-    }
+        if ((x1 === x2) && (y1 === y2)) break;
 
-    x = x1;
-    y = y1;
+        var e2 = 2 * err;
 
-    //Painting the line since the starting point.
-    var p;
-    if (dx > dy) {
-        p = 2 * dy - dx;
-        const twoDy = 2 * dy, twoDyMinusDx = 2 * (dy - dx);
-        while (x != x2) {
-            x += stepX;
-            if (p < 0) {
-                p += twoDy;
-            }
-            else {
-                y += stepY;
-                p += twoDyMinusDx;
-            }
-            context.fillRect(x, y, 1, 1);
+        if (e2 > -dy) {
+            err -= dy;
+            x1 += sx;
         }
-    }
-    else {
-        p = 2 * dx - dy;
-        const twoDx = 2 * dx, twoDxMinusDy = 2 * (dx - dy);
-        while (y != y2) {
-            y += stepY;
-            if (p < 0) {
-                p += twoDx;
-            }
-            else {
-                x += stepX;
-                p += twoDxMinusDy;
-            }
-            context.fillRect(x, y, 1, 1);
+        if (e2 <dx) {
+            err += dx;
+            y1 += sy;
         }
     }
 }
+
 //Slection of the canvas.
 const canvas = document.querySelector('canvas');
 
