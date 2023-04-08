@@ -40,34 +40,3 @@ function line_bresenham(x1, y1, x2, y2) {
         }
     }
 }
-
-//Slection of the canvas.
-const canvas = document.querySelector('canvas');
-
-//The canvas going to occupy the entire screen.
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-//contextt of the canvas for 2D painting.
-const context = canvas.getContext('2d');
-
-//Initialization of the painting area.
-context.beginPath();
-
-for (var i = 0; i < 10; i++) {
-    //Each line going to be paint every second.
-    setTimeout(() => {
-        //First point position on X and Y.
-        var x1 = Math.floor(Math.random() * canvas.width), y1 = Math.floor(Math.random() * canvas.height);
-
-        //Second point position on X and Y.
-        var x2 = Math.floor(Math.random() * canvas.width), y2 = Math.floor(Math.random() * canvas.height);
-
-        //Painting the line.
-        context.fillStyle = 'rgb(' + random_number_between(0, 255) + ', ' + random_number_between(0, 255) + ', ' + random_number_between(0, 255) + ')';
-        line_bresenham(x1, y1, x2, y2);
-    }, i * 1000);
-}
-
-//Closing of the painting area.
-context.closePath();
